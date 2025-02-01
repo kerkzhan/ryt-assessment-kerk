@@ -1,30 +1,32 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
-import { useColorScheme } from "@/components/useColorScheme";
 import { Slot } from "expo-router";
 
 import "../global.css";
+import { SafeAreaView } from "@/components/ui/safe-area-view";
+import React from "react";
 
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from "expo-router";
 
-// export const unstable_settings = {
-//   // Ensure that reloading on `/modal` keeps a back button present.
-//   initialRouteName: "gluestack",
-// };
+let defaultTheme: "dark" | "light" = "dark";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
+
+type ThemeContextType = {
+  colorMode?: "dark" | "light";
+  toggleColorMode?: () => void;
+};
+export const ThemeContext = React.createContext<ThemeContextType>({
+  colorMode: "light",
+  toggleColorMode: () => {},
+});
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -32,7 +34,6 @@ export default function RootLayout() {
     ...FontAwesome.font,
   });
 
-  const [styleLoaded, setStyleLoaded] = useState(false);
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
     if (error) throw error;
@@ -44,25 +45,20 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
-  // useLayoutEffect(() => {
-  //   setStyleLoaded(true);
-  // }, [styleLoaded]);
-
-  // if (!loaded || !styleLoaded) {
-  //   return null;
-  // }
-
   return <RootLayoutNav />;
 }
 
 function RootLayoutNav() {
-  const colorScheme = useColorScheme();
+  const [colorMode, _] = useState<"dark" | "light">(defaultTheme);
 
   return (
-    <GluestackUIProvider mode={colorScheme === "dark" ? "dark" : "light"}>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Slot />
-      </ThemeProvider>
-    </GluestackUIProvider>
+    <>
+      <SafeAreaView className="bg-slate-800" />
+      <GluestackUIProvider mode={colorMode}>
+        <SafeAreaView className="bg-slate-800 flex-1 overflow-hidden p-2">
+          <Slot />
+        </SafeAreaView>
+      </GluestackUIProvider>
+    </>
   );
 }
