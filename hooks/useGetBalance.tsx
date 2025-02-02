@@ -5,6 +5,5 @@ export const useGetBalance = () => {
   return useQuery({
     queryKey: ["balance"],
     queryFn: () => getBalance(),
-    refetchOnMount: "always",
   });
 };

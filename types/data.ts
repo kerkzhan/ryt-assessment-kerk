@@ -1,8 +1,8 @@
 // Types
-export type TransferRequest = {
+export type Transaction = {
   id: string;
   amount: number;
-  recipientId: string;
+  recipient: Contact;
   timestamp: string;
   note?: string;
 };
@@ -15,3 +15,5 @@ export type Contact = {
   id: string;
   name: string;
 };
+
+export type InsertTransaction = Omit<Transaction, "id" | "timestamp">;

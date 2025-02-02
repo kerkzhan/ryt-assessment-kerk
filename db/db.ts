@@ -10,20 +10,26 @@ const INITIAL_DATA = {
     { id: 1, name: "Lebron James" },
     { id: 2, name: "Steph Curry" },
   ],
+  transactionHistory: [],
+};
+
+const resetDb = async () => {
+  AsyncStorage.clear();
+  await initializeDb();
 };
 
 const initializeDb = async () => {
   console.log("Initializing database");
-  await AsyncStorage.clear();
   let values;
   try {
     // Check if any data exists
-    values = await AsyncStorage.multiGet([KEYS.BALANCE, KEYS.CONTACTS]);
+    values = await AsyncStorage.multiGet([KEYS.BALANCE, KEYS.CONTACTS, KEYS.HISTORY]);
     // Only initialize if no data exists
     if (values.some(([_, value]) => !value)) {
       await AsyncStorage.multiSet([
         [KEYS.BALANCE, JSON.stringify(INITIAL_DATA.balance)],
         [KEYS.CONTACTS, JSON.stringify(INITIAL_DATA.contacts)],
+        [KEYS.HISTORY, JSON.stringify(INITIAL_DATA.transactionHistory)],
       ]);
     }
 
@@ -58,4 +64,4 @@ const getData = async <T>(key: KEY_VALUES): Promise<T | null> => {
   }
 };
 
-export { initializeDb, setData, getData };
+export { initializeDb, setData, getData, resetDb };
