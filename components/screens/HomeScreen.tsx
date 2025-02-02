@@ -1,26 +1,14 @@
 import React, { useEffect } from "react";
-import { StatusBar, Platform } from "react-native";
-import { Plus, Home, MessageCircle, User, SlidersHorizontal } from "lucide-react-native";
+import { StatusBar, Platform, View } from "react-native";
 import { Box } from "../ui/box";
-import { Text } from "../ui/text";
-import MobileBottomTabs from "../MobileBottomTabs";
 import BalanceCard from "../BalanceCard";
-import ContactCard from "../ContactCard";
 
-const bottomTabs = [
-  {
-    icon: Home,
-    label: "Home",
-  },
-  {
-    icon: MessageCircle,
-    label: "Inbox",
-  },
-  {
-    icon: User,
-    label: "Profile",
-  },
-];
+import { Heading } from "../ui/heading";
+
+import ActionMenu from "../ActionMenu";
+import TransactionHistoryList from "../TransactionHistoryList";
+import NukeAlert from "../NukeAlert";
+import { Divider } from "../ui/divider";
 
 const HomeScreen = () => {
   useEffect(() => {
@@ -30,31 +18,38 @@ const HomeScreen = () => {
     }
   }, []);
 
-  const [activeTab, setActiveTab] = React.useState("Home");
-
   return (
     <>
       <Box className="flex-1">
-        <StatusBar />
+        <View className="flex-1 p-2 gap-4">
+          <StatusBar />
+          <Heading bold size="3xl">
+            Ryt Bank
+          </Heading>
 
-        <Box className="flex-1">
           <BalanceCard />
-          <ContactCard />
-          {/* <MobileProfilePage isActive={activeTab === "Profile"} />
 
-          <Explorepage setActiveTab={setActiveTab} activeTab={activeTab} />
+          <View>
+            <Heading bold size="2xl" className="mb-4">
+              Actions
+            </Heading>
+            <ActionMenu />
+          </View>
 
-          <MobileModeChangeButton /> */}
-        </Box>
-        <Box className="h-[72px] items-center w-full flex md:hidden border-t border-outline-50">
-          <MobileBottomTabs
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
-            bottomTabs={bottomTabs}
-          />
-        </Box>
+          <View className="flex-1">
+            <Heading bold size="2xl" className="mb-4">
+              Recent Transactions
+            </Heading>
+            <TransactionHistoryList />
+          </View>
+        </View>
+
+        <Divider className="my-4 bg-white" />
+
+        <View className="px-2 pb-2">
+          <NukeAlert />
+        </View>
       </Box>
-      {/* )} */}
     </>
   );
 };

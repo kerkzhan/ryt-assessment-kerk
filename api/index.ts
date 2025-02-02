@@ -27,7 +27,6 @@ const getBalance = async (): Promise<Balance> => {
 
 const makeTransfer = async (data: InsertTransaction) => {
   await delay();
-  console.log("TRANSFERRING");
   const balance = await getBalance();
 
   // TODO: Validate input with zod
