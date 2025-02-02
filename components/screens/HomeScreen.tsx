@@ -5,6 +5,7 @@ import { Box } from "../ui/box";
 import { Text } from "../ui/text";
 import MobileBottomTabs from "../MobileBottomTabs";
 import BalanceCard from "../BalanceCard";
+import ContactCard from "../ContactCard";
 
 const bottomTabs = [
   {
@@ -37,7 +38,8 @@ const HomeScreen = () => {
         <StatusBar />
 
         <Box className="flex-1">
-          <BalanceCard balance={9000} />
+          <BalanceCard />
+          <ContactCard />
           {/* <MobileProfilePage isActive={activeTab === "Profile"} />
 
           <Explorepage setActiveTab={setActiveTab} activeTab={activeTab} />
