@@ -1,11 +1,11 @@
 import { KEYS } from "@/constants/db-keys";
 import { ERROR_CODES } from "@/constants/error-codes";
 import { getData, setData } from "@/db/db";
-import { Balance, Contact, TransferRequest } from "@/types/data";
+import { Balance, Contact, InsertTransaction, Transaction } from "@/types/data";
 import { ApiError } from "@/types/errors";
 import * as Crypto from "expo-crypto";
 
-const FAKE_DELAY = 2000;
+const FAKE_DELAY = Math.floor(Math.random() * 1000);
 
 const delay = async () => {
   await new Promise((r) => setTimeout(r, FAKE_DELAY));
@@ -25,9 +25,9 @@ const getBalance = async (): Promise<Balance> => {
   };
 };
 
-const makeTransfer = async (data: TransferRequest) => {
+const makeTransfer = async (data: InsertTransaction) => {
   await delay();
-
+  console.log("TRANSFERRING");
   const balance = await getBalance();
 
   // TODO: Validate input with zod
@@ -41,10 +41,10 @@ const makeTransfer = async (data: TransferRequest) => {
 
   // TODO: Implement biometric auth check for
 
-  const transaction: TransferRequest = {
+  const transaction: Transaction = {
     id: Crypto.randomUUID(),
     amount: data.amount,
-    recipientId: data.recipientId,
+    recipient: data.recipient,
     timestamp: new Date().toISOString(),
   };
 
@@ -52,9 +52,12 @@ const makeTransfer = async (data: TransferRequest) => {
     amount: balance.amount - data.amount,
   };
 
-  const insertHistorySuccess = await setData<TransferRequest>({
+  const transactionHistory = await getTransactionHistory({});
+  transactionHistory.push(transaction);
+
+  const insertHistorySuccess = await setData<Transaction[]>({
     key: KEYS.HISTORY,
-    value: transaction,
+    value: transactionHistory,
   });
 
   const updateBalanceSuccess = await setData<Balance>({ key: KEYS.BALANCE, value: newBalance });
@@ -73,12 +76,32 @@ const makeTransfer = async (data: TransferRequest) => {
   };
 };
 
-const getRecentTransactions = async () => {
+const getTransactionById = async (id: string) => {
   await delay();
-  return [
-    { id: "1", amount: 50, recipient: "John Doe", date: "2024-02-01" },
-    { id: "2", amount: 30, recipient: "Jane Smith", date: "2024-02-02" },
-  ];
+
+  const transactions = await getData<Transaction[]>(KEYS.HISTORY);
+  const transactionById = transactions?.find((trx) => trx.id === id);
+
+  if (transactions === null || !transactionById) {
+    throw {
+      code: ERROR_CODES.GENERIC_ERROR,
+      message: "Failed to get transaction. Please try again later or contact support.",
+    } as ApiError;
+  }
+  return transactionById;
+};
+
+const getTransactionHistory = async ({ limit = 0 }: { limit?: number }) => {
+  await delay();
+
+  const transactions = await getData<Transaction[]>(KEYS.HISTORY);
+  if (transactions === null) {
+    throw {
+      code: ERROR_CODES.GENERIC_ERROR,
+      message: "Failed to get transaction history. Please try again later or contact support.",
+    } as ApiError;
+  }
+  return !!limit ? transactions.slice(-limit) : transactions;
 };
 
 const getContacts = async (): Promise<Contact[]> => {
@@ -96,4 +119,4 @@ const getContacts = async (): Promise<Contact[]> => {
   return contacts;
 };
 
-export { getBalance, makeTransfer, getRecentTransactions, getContacts };
+export { getBalance, makeTransfer, getTransactionHistory, getContacts, getTransactionById };
