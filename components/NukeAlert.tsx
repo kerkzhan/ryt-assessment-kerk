@@ -12,6 +12,7 @@ import { Text } from "@/components/ui/text";
 import { resetDb } from "@/db/db";
 import { useQueryClient } from "@tanstack/react-query";
 import React from "react";
+import { View } from "react-native";
 
 const NukeAlert = () => {
   const [showAlertDialog, setShowAlertDialog] = React.useState(false);
@@ -27,10 +28,11 @@ const NukeAlert = () => {
   };
 
   return (
-    <>
-      <Button onPress={() => setShowAlertDialog(true)} action="negative" size="xl">
+    <View className=" bg-ryt-primary p-4 mt-4">
+      <Button onPress={() => setShowAlertDialog(true)} action="negative" size="xl" className="h-16">
         <ButtonText>NUKE! (Reset Database)</ButtonText>
       </Button>
+
       <AlertDialog isOpen={showAlertDialog} onClose={handleClose} size="lg">
         <AlertDialogBackdrop />
         <AlertDialogContent>
@@ -55,7 +57,7 @@ const NukeAlert = () => {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </>
+    </View>
   );
 };
 

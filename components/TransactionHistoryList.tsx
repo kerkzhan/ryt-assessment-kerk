@@ -7,30 +7,20 @@ import { Text } from "./ui/text";
 import { Center } from "./ui/center";
 import { ScrollView } from "react-native";
 
-const TransactionHistoryList = ({ limit }: { limit: number }) => {
-  const { data: transactionHistoryData, isFetching } = useGetTransactionHistory({ limit });
+const TransactionHistoryList = ({ limit = 0 }: { limit?: number }) => {
+  const { data: transactionHistoryData, isLoading } = useGetTransactionHistory({ limit });
 
-  if (isFetching) {
+  if (isLoading) {
     return (
-      <VStack space="md">
-        <Box className="h-20 bg-slate-700 gap-2 rounded-lg p-4">
+      <VStack space="md" className="px-6">
+        <Box className="h-20 bg-white gap-2 rounded-lg p-4">
           <Center className="w-full h-full">
-            <SkeletonText
-              _lines={3}
-              className="h-3 rounded-md"
-              startColor="bg-slate-400"
-              speed={4}
-            />
+            <SkeletonText _lines={3} className="h-1.5 " startColor="bg-gray-100" speed={4} />
           </Center>
         </Box>
-        <Box className="h-20 bg-slate-700 gap-2 rounded-lg p-4">
+        <Box className="h-20 bg-white gap-2 rounded-lg p-4">
           <Center className="w-full h-full">
-            <SkeletonText
-              _lines={3}
-              className="h-3 rounded-md"
-              startColor="bg-slate-400"
-              speed={4}
-            />
+            <SkeletonText _lines={3} className="h-1.5 " startColor="bg-gray-100" speed={4} />
           </Center>
         </Box>
       </VStack>
@@ -41,9 +31,9 @@ const TransactionHistoryList = ({ limit }: { limit: number }) => {
     return <Text>No transactions to show.</Text>;
   }
   return (
-    <ScrollView>
+    <ScrollView className="px-6" showsHorizontalScrollIndicator>
       <VStack space="md">
-        {transactionHistoryData?.reverse().map((trx) => (
+        {transactionHistoryData?.map((trx) => (
           <TransactionHistoryCard
             key={trx.id}
             transactionId={trx.id}

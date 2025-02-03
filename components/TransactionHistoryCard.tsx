@@ -19,22 +19,26 @@ const TransactionHistoryCard = ({ amount, date, recipient, transactionId }: Prop
   return (
     <Link
       href={{
-        pathname: "/payout/[id]",
+        pathname: "/transactions/[id]",
         params: { id: transactionId },
       }}
       asChild
     >
       <Pressable className="w-full">
-        <Card size="md" variant="elevated">
+        <Card size="md" variant="elevated" className="bg-white shadow-lg">
           <HStack className="justify-between">
             <VStack>
-              <Heading size="md" className="mb-1 text-white">
+              <Heading size="lg" className="mb-1 text-black">
                 {recipient?.name}
               </Heading>
-              <Text size="sm">{prettifyIsoString(date)}</Text>
+              <Text size="lg" className="text-black">
+                {prettifyIsoString(date)}
+              </Text>
             </VStack>
 
-            <Text bold>MYR {amount}</Text>
+            <Heading size="xl" className="text-ryt-primary">
+              MYR {amount}
+            </Heading>
           </HStack>
         </Card>
       </Pressable>

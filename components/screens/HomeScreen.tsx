@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StatusBar, Platform, View } from "react-native";
+import { StatusBar, Platform, View, ScrollView, ScrollViewBase } from "react-native";
 import { Box } from "../ui/box";
 import BalanceCard from "../BalanceCard";
 
@@ -9,6 +9,8 @@ import ActionMenu from "../ActionMenu";
 import TransactionHistoryList from "../TransactionHistoryList";
 import NukeAlert from "../NukeAlert";
 import { Divider } from "../ui/divider";
+import { VStack } from "../ui/vstack";
+import { Button, ButtonText } from "../ui/button";
 
 const HomeScreen = () => {
   useEffect(() => {
@@ -21,34 +23,27 @@ const HomeScreen = () => {
   return (
     <>
       <Box className="flex-1">
-        <View className="flex-1 p-2 gap-4">
-          <StatusBar />
-          <Heading bold size="3xl">
-            Ryt Bank
-          </Heading>
-
-          <BalanceCard />
-
-          <View>
-            <Heading bold size="2xl" className="mb-4">
-              Actions
+        <VStack space="md" className="flex-1 ">
+          <Box className="bg-ryt-primary rounded-b-3xl p-6 gap-4">
+            <Heading bold size="3xl">
+              Ryt Bank
             </Heading>
+            <BalanceCard />
+          </Box>
+
+          <View className="p-6">
             <ActionMenu />
           </View>
 
-          <View className="flex-1">
-            <Heading bold size="2xl" className="mb-4">
+          <View className="flex-1 gap-4">
+            <Heading bold size="2xl" className=" text-ryt-primary px-6">
               Recent Transactions
             </Heading>
             <TransactionHistoryList limit={5} />
           </View>
-        </View>
+        </VStack>
 
-        <Divider className="my-4 bg-white" />
-
-        <View className="px-2 pb-2">
-          <NukeAlert />
-        </View>
+        <NukeAlert />
       </Box>
     </>
   );

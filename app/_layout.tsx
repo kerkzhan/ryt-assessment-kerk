@@ -9,6 +9,7 @@ import { SafeAreaView } from "@/components/ui/safe-area-view";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { initializeDb } from "@/db/db";
+import { StatusBar } from "react-native";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -46,15 +47,15 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   return (
-    <>
-      <SafeAreaView className="bg-slate-800" />
+    <SafeAreaView className="bg-ryt-secondary flex-1 ">
+      <StatusBar className="bg-ryt-primary" barStyle={"light-content"} />
       <QueryClientProvider client={queryClient}>
         <GluestackUIProvider mode={"dark"}>
-          <SafeAreaView className="bg-slate-800 flex-1 overflow-hidden p-2">
+          <SafeAreaView className="bg-ryt-secondary flex-1 overflow-hidden">
             <Slot />
           </SafeAreaView>
         </GluestackUIProvider>
       </QueryClientProvider>
-    </>
+    </SafeAreaView>
   );
 }

@@ -7,9 +7,9 @@ import { SkeletonText } from "./ui/skeleton";
 const BalanceCard = () => {
   const { data, isLoading } = useGetBalance();
   return (
-    <View className="bg-slate-600 rounded-lg p-4">
+    <View>
       <VStack space="sm">
-        <Text size="2xl" bold className="text-gray-100">
+        <Text size="lg" className="text-white">
           Total Balance (MYR)
         </Text>
 
@@ -19,6 +19,8 @@ const BalanceCard = () => {
           <Text size="4xl" bold className="text-white">
             {new Intl.NumberFormat(undefined, {
               style: "decimal",
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
             }).format(data.amount)}
           </Text>
         )}

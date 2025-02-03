@@ -4,40 +4,57 @@ import { Send, ArrowDownLeft, Clock } from "lucide-react-native";
 import { Icon } from "./ui/icon";
 import { Card } from "./ui/card";
 import { Box } from "./ui/box";
+import { HStack } from "./ui/hstack";
 
 const ActionMenu = () => (
-  <Card variant="elevated" className="bg-slate-600 rounded-lg">
-    <View className="flex-row justify-between items-center w-full px-4">
-      <Link href="/payout">
-        <Box className="items-center">
-          <View className="bg-blue-500 rounded-full p-4 mb-2 size-16 items-center justify-center">
-            <Icon as={Send} />
-          </View>
-          <Text className="text-lg font-medium text-white">Send</Text>
-        </Box>
-      </Link>
-
-      <Link href="/payout" disabled className="disabled:opacity-50" asChild>
-        <Pressable>
-          <View className="items-center">
-            <View className="bg-green-500 rounded-full p-4 mb-2 size-16 items-center justify-center">
-              <Icon as={ArrowDownLeft} />
+  <Box>
+    <HStack space="lg" className="w-full  justify-evenly">
+      <Card
+        variant="elevated"
+        className="bg-ryt-primary rounded-lg flex-1 justify-center items-center border shadow-md border-ryt-primary"
+      >
+        <Link href="/payout">
+          <Box className="items-center">
+            <View className=" size-16 items-center justify-center">
+              <Icon as={Send} size="3xl" />
             </View>
-            <Text className="text-lg font-medium text-white">Receive</Text>
-          </View>
-        </Pressable>
-      </Link>
+            <Text className="text-lg font-medium text-white">Send</Text>
+          </Box>
+        </Link>
+      </Card>
 
-      <Link href="/payout">
-        <View className="items-center">
-          <View className="bg-purple-500 rounded-full p-4 mb-2 size-16 items-center justify-center">
-            <Icon as={Clock} />
+      <Card
+        variant="elevated"
+        aria-disabled={true}
+        className="bg-ryt-secondary aria-disabled:bg-gray-300 rounded-lg flex-1 border shadow-md border-ryt-primary"
+      >
+        <Link href="/payout" disabled className="disabled:opacity-50 " asChild>
+          <Pressable>
+            <View className="items-center">
+              <View className=" size-16 text-ryt-primary items-center justify-center">
+                <Icon as={ArrowDownLeft} size="3xl" className="text-ryt-primary" />
+              </View>
+              <Text className="text-lg font-medium text-ryt-primary">Receive</Text>
+            </View>
+          </Pressable>
+        </Link>
+      </Card>
+
+      <Card
+        variant="filled"
+        className="bg-ryt-secondary rounded-lg flex-1 justify-center items-center border shadow-md border-ryt-primary"
+      >
+        <Link href="/transactions">
+          <View className="items-center">
+            <View className=" size-16 text-ryt-primary items-center justify-center">
+              <Icon as={Clock} size="3xl" className="text-ryt-primary" />
+            </View>
+            <Text className="text-lg font-medium text-ryt-primary">History</Text>
           </View>
-          <Text className="text-lg font-medium text-white">History</Text>
-        </View>
-      </Link>
-    </View>
-  </Card>
+        </Link>
+      </Card>
+    </HStack>
+  </Box>
 );
 
 export default ActionMenu;
