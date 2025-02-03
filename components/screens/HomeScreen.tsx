@@ -7,10 +7,12 @@ import { Heading } from "../ui/heading";
 
 import ActionMenu from "../ActionMenu";
 import TransactionHistoryList from "../TransactionHistoryList";
-import NukeAlert from "../NukeAlert";
+import NukeButton from "../NukeButton";
+import ResetQueryCacheButton from "../ResetQueryCacheButton";
 import { Divider } from "../ui/divider";
 import { VStack } from "../ui/vstack";
 import { Button, ButtonText } from "../ui/button";
+import { HStack } from "../ui/hstack";
 
 const HomeScreen = () => {
   useEffect(() => {
@@ -43,7 +45,10 @@ const HomeScreen = () => {
           </View>
         </VStack>
 
-        <NukeAlert />
+        <HStack className="justify-evenly bg-ryt-primary p-4" space="lg">
+          <ResetQueryCacheButton />
+          <NukeButton />
+        </HStack>
       </Box>
     </>
   );
