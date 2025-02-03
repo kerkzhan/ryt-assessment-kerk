@@ -33,6 +33,7 @@ const initializeDb = async () => {
       ]);
     }
 
+    console.log("Database initialized");
     return true;
   } catch (error) {
     console.error("Failed to initialize database:", error);

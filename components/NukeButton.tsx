@@ -22,7 +22,7 @@ const NukeButton = () => {
   const handleDelete = async () => {
     console.log("Resetting database...");
     await resetDb();
-    console.log("Done!");
+    console.log("Database resetted!");
     queryClient.resetQueries();
     setShowAlertDialog(false);
   };

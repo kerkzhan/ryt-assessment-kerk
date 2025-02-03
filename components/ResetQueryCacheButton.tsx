@@ -21,7 +21,7 @@ const ResetQueryCacheButton = () => {
   const handleDelete = async () => {
     console.log("Resetting query cache...");
     queryClient.resetQueries();
-    console.log("Done!");
+    console.log("Query cache resetted!");
     setShowAlertDialog(false);
   };
 
