@@ -4,6 +4,8 @@ import { HStack } from "./ui/hstack";
 import { VStack } from "./ui/vstack";
 import { Text } from "./ui/text";
 import { Transaction } from "@/types/data";
+import { Button, ButtonText } from "./ui/button";
+import { Link, router } from "expo-router";
 
 const TransactionDetails = ({ transaction }: { transaction: Transaction }) => {
   return (
@@ -44,6 +46,36 @@ const TransactionDetails = ({ transaction }: { transaction: Transaction }) => {
             <Text className="text-gray-800 font-semibold flex-1">{transaction.note || "-"}</Text>
           </HStack>
         </VStack>
+      </VStack>
+
+      <VStack space="lg" className="p-4">
+        <Button
+          size="xl"
+          variant="link"
+          action="secondary"
+          className="rounded-lg items-center"
+          onPress={() => router.back()}
+        >
+          <ButtonText className="text-ryt-primary font-semibold text-lg">Back</ButtonText>
+        </Button>
+        <Link
+          href={{
+            pathname: "/payout",
+            params: {
+              recipientId: transaction?.recipient.id,
+            },
+          }}
+          asChild
+        >
+          <Button
+            action="default"
+            size="xl"
+            className="bg-ryt-primary rounded-lg items-center"
+            onPress={() => router.back()}
+          >
+            <Text className="text-white font-semibold text-lg">Transfer again</Text>
+          </Button>
+        </Link>
       </VStack>
     </VStack>
   );

@@ -7,6 +7,7 @@ import { Pressable } from "@/components/ui/pressable";
 import { Card } from "@/components/ui/card";
 import TransactionDetails from "@/components/TransactionDetails";
 import { SkeletonText } from "@/components/ui/skeleton";
+import { Button, ButtonText } from "@/components/ui/button";
 
 const TransactionDetailsPage = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -35,16 +36,6 @@ const TransactionDetailsPage = () => {
         ) : (
           <TransactionDetails transaction={transaction} />
         )}
-        <VStack className="p-6">
-          <View className="p-6">
-            <Pressable
-              className="bg-[#0000E6] py-4 rounded-2xl items-center"
-              onPress={() => router.back()}
-            >
-              <Text className="text-white font-semibold text-lg">Back</Text>
-            </Pressable>
-          </View>
-        </VStack>
       </Card>
     </View>
   );

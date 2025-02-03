@@ -7,6 +7,7 @@ import { Transaction } from "@/types/data";
 import { Card } from "../ui/card";
 import { Pressable } from "../ui/pressable";
 import TransactionDetails from "../TransactionDetails";
+import { VStack } from "../ui/vstack";
 
 const PayoutResultScreen = () => {
   const {
@@ -32,7 +33,7 @@ const PayoutResultScreen = () => {
   }
 
   return (
-    <View className="flex-1 bg-[#0000E6] px-4">
+    <View className="flex-1 bg-ryt-primary px-4">
       <Card className="bg-white rounded-3xl shadow-lg mt-20 overflow-hidden">
         <View className="items-center pt-12 pb-8">
           {isSuccessful ? (
@@ -54,14 +55,6 @@ const PayoutResultScreen = () => {
             </Text>
           </View>
         )}
-
-        <View className="p-6">
-          <Link href="/" className="bg-[#0000E6] py-4 rounded-2xl items-center" asChild>
-            <Pressable>
-              <Text className="text-white font-semibold text-lg">Back to Home</Text>
-            </Pressable>
-          </Link>
-        </View>
       </Card>
     </View>
   );

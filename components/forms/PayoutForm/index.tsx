@@ -25,7 +25,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { useGetContacts } from "@/hooks/useGetContacts";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { useMakeTransfer } from "@/hooks/useMakeTransfer";
 import { Spinner } from "@/components/ui/spinner";
 import { HStack } from "@/components/ui/hstack";
@@ -45,6 +45,7 @@ const PayoutForm = () => {
   const { data: balanceData } = useGetBalance();
   const { mutate: makeTransfer, isPending } = useMakeTransfer();
   const { show } = useToast();
+  const { recipientId = "" } = useLocalSearchParams<{ recipientId: string }>();
 
   const payoutFormSchema = useMemo(
     () => createPayoutFormSchema(balanceData?.amount || 0),
@@ -101,13 +102,14 @@ const PayoutForm = () => {
       }
     );
   };
+  const initialLabel = contactsData?.find((contact) => contact.id === recipientId)?.name || "";
 
   return (
     <VStack space={"lg"} className="p-6">
       <Controller
         control={control}
         name="recipientId"
-        defaultValue=""
+        defaultValue={recipientId}
         render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
           <FormControl isRequired isInvalid={!!error}>
             <FormControlLabel>
@@ -115,7 +117,7 @@ const PayoutForm = () => {
                 Recipient
               </FormControlLabelText>
             </FormControlLabel>
-            <Select selectedValue={value} onValueChange={onChange}>
+            <Select selectedValue={value} onValueChange={onChange} initialLabel={initialLabel}>
               <SelectTrigger variant="outline" size="lg" className="bg-white rounded-lg border-0">
                 <SelectInput
                   placeholder="Select a recipient"
@@ -207,7 +209,7 @@ const PayoutForm = () => {
       />
 
       <Button
-        className="w-full rounded-lg mt-6 bg-[#0000E6]"
+        className="w-full rounded-lg mt-6 bg-ryt-primary disabled:opacity-40"
         size="lg"
         onPress={handleSubmit(onSubmit)}
         disabled={isPending}
