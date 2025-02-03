@@ -1,11 +1,11 @@
 import { Link } from "expo-router";
 import { Box } from "../ui/box";
-import PayoutForm from "../forms/PayoutForm";
 import { HStack } from "../ui/hstack";
 import { VStack } from "../ui/vstack";
 import { Icon } from "../ui/icon";
 import { ArrowLeft } from "lucide-react-native";
 import { Heading } from "../ui/heading";
+import PayoutForm from "../forms/PayoutForm";
 
 const PayoutScreen = () => {
   return (

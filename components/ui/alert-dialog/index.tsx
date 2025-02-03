@@ -275,7 +275,7 @@ AlertDialogBackdrop.displayName = 'AlertDialogBackdrop';
 export {
   AlertDialog,
   AlertDialogContent,
-  AlertDialogCloseButton,
+  
   AlertDialogHeader,
   AlertDialogFooter,
   AlertDialogBody,

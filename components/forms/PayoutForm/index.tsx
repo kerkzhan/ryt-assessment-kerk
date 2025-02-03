@@ -2,7 +2,6 @@ import { Button, ButtonText } from "@/components/ui/button";
 import {
   FormControl,
   FormControlError,
-  FormControlErrorIcon,
   FormControlErrorText,
   FormControlHelper,
   FormControlHelperText,
@@ -39,7 +38,6 @@ import { useGetBalance } from "@/hooks/useGetBalance";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AlertCircleIcon } from "lucide-react-native";
 import { createPayoutFormSchema } from "./schema";
 
 const PayoutForm = () => {
@@ -144,10 +142,7 @@ const PayoutForm = () => {
               </SelectPortal>
             </Select>
             <FormControlError>
-              <FormControlErrorText>
-                <FormControlErrorIcon as={AlertCircleIcon} />
-                {error?.message}
-              </FormControlErrorText>
+              <FormControlErrorText>{error?.message}</FormControlErrorText>
             </FormControlError>
           </FormControl>
         )}
@@ -181,10 +176,7 @@ const PayoutForm = () => {
               </FormControlHelperText>
             </FormControlHelper>
             <FormControlError>
-              <FormControlErrorText>
-                <FormControlErrorIcon as={AlertCircleIcon} />
-                {error?.message}
-              </FormControlErrorText>
+              <FormControlErrorText>{error?.message}</FormControlErrorText>
             </FormControlError>
           </FormControl>
         )}

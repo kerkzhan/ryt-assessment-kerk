@@ -6,7 +6,7 @@ import { VStack } from "@/components/ui/vstack";
 import { Pressable } from "@/components/ui/pressable";
 import { Card } from "@/components/ui/card";
 import TransactionDetails from "@/components/TransactionDetails";
-import { Skeleton, SkeletonText } from "@/components/ui/skeleton";
+import { SkeletonText } from "@/components/ui/skeleton";
 
 const TransactionDetailsPage = () => {
   const { id } = useLocalSearchParams<{ id: string }>();

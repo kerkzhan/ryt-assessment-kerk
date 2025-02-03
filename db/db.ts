@@ -1,5 +1,4 @@
 import { KEY_VALUES, KEYS } from "@/constants/db-keys";
-import { Balance } from "@/types/data";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const INITIAL_DATA = {

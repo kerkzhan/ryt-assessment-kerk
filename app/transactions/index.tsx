@@ -6,7 +6,6 @@ import { Icon } from "@/components/ui/icon";
 import { VStack } from "@/components/ui/vstack";
 import { Link } from "expo-router";
 import { ArrowLeft } from "lucide-react-native";
-import { View } from "react-native";
 
 const TransactionHistoryPage = () => {
   return (

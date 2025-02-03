@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StatusBar, Platform, View, ScrollView, ScrollViewBase } from "react-native";
+import { Platform, View } from "react-native";
 import { Box } from "../ui/box";
 import BalanceCard from "../BalanceCard";
 
@@ -9,9 +9,7 @@ import ActionMenu from "../ActionMenu";
 import TransactionHistoryList from "../TransactionHistoryList";
 import NukeButton from "../NukeButton";
 import ResetQueryCacheButton from "../ResetQueryCacheButton";
-import { Divider } from "../ui/divider";
 import { VStack } from "../ui/vstack";
-import { Button, ButtonText } from "../ui/button";
 import { HStack } from "../ui/hstack";
 
 const HomeScreen = () => {
