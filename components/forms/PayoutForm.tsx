@@ -31,6 +31,9 @@ import { useMakeTransfer } from "@/hooks/useMakeTransfer";
 import { Spinner } from "../ui/spinner";
 import { HStack } from "../ui/hstack";
 import colors from "tailwindcss/colors";
+import { ERROR_CODES } from "@/constants/error-codes";
+import { Toast, ToastDescription, ToastTitle, useToast } from "../ui/toast";
+import { Alert, Linking } from "react-native";
 
 const PayoutForm = () => {
   const [isInvalid, setIsInvalid] = useState(false);
@@ -38,13 +41,15 @@ const PayoutForm = () => {
   const [recipientId, setRecipientId] = useState("");
   const { data } = useGetContacts();
   const { mutate: makeTransfer, isPending } = useMakeTransfer();
+  const { show } = useToast();
 
   const handleSubmit = () => {
     const recipient = data?.find((el) => el.id === recipientId);
 
     if (!recipient) {
-      console.log("No such contact");
-      router.replace("/payout/result?status=failed");
+      Alert.alert("No Recipient.", "Please select a recipient, or try selecting another one.", [
+        { text: "Ok", style: "default" },
+      ]);
       return;
     }
 
@@ -54,11 +59,38 @@ const PayoutForm = () => {
         recipient,
       },
       {
-        onSuccess: () => {
-          router.replace("/payout/result?status=success");
+        onSuccess: ({ transactionId }) => {
+          router.replace(`/payout/result?status=success&transactionId=${transactionId}`);
         },
         onError: (err) => {
-          router.replace(`/payout/result?status=failed&error=${err.code}&message=${err.message}`);
+          if (err.code === ERROR_CODES.UNAUTHORIZED) {
+            show({
+              placement: "bottom",
+              duration: 3000,
+              render: () => {
+                return (
+                  <Toast action="error" variant="solid">
+                    <ToastTitle>{err.code}</ToastTitle>
+                    <ToastDescription>{err.message}</ToastDescription>
+                  </Toast>
+                );
+              },
+            });
+          } else if (err.code === ERROR_CODES.NO_SECURITY_ENABLED) {
+            Alert.alert(
+              "No Security Enabled",
+              "Please set up PIN, pattern, or biometrics in your device settings before making a transfer.",
+              [
+                {
+                  text: "Go to Settings",
+                  onPress: () => Linking.openSettings(),
+                },
+                { text: "Cancel", style: "cancel" },
+              ]
+            );
+          } else {
+            router.replace(`/payout/result?status=failed&error=${err.code}&message=${err.message}`);
+          }
         },
       }
     );

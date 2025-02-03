@@ -1,16 +1,14 @@
 import { useGetTransactionHistory } from "@/hooks/useGetTransactionHistory";
 import TransactionHistoryCard from "./TransactionHistoryCard";
-
 import { VStack } from "./ui/vstack";
-import { Skeleton, SkeletonText } from "./ui/skeleton";
-import { View } from "./ui/view";
+import { SkeletonText } from "./ui/skeleton";
 import { Box } from "./ui/box";
-import { HStack } from "./ui/hstack";
 import { Text } from "./ui/text";
 import { Center } from "./ui/center";
+import { ScrollView } from "react-native";
 
-const TransactionHistoryList = () => {
-  const { data: transactionHistoryData, isFetching } = useGetTransactionHistory({ limit: 5 });
+const TransactionHistoryList = ({ limit }: { limit: number }) => {
+  const { data: transactionHistoryData, isFetching } = useGetTransactionHistory({ limit });
 
   if (isFetching) {
     return (
@@ -43,17 +41,19 @@ const TransactionHistoryList = () => {
     return <Text>No transactions to show.</Text>;
   }
   return (
-    <VStack space="md">
-      {transactionHistoryData?.map((trx) => (
-        <TransactionHistoryCard
-          key={trx.id}
-          transactionId={trx.id}
-          recipient={trx.recipient}
-          amount={trx.amount}
-          date={trx.timestamp}
-        />
-      ))}
-    </VStack>
+    <ScrollView>
+      <VStack space="md">
+        {transactionHistoryData?.reverse().map((trx) => (
+          <TransactionHistoryCard
+            key={trx.id}
+            transactionId={trx.id}
+            recipient={trx.recipient}
+            amount={trx.amount}
+            date={trx.timestamp}
+          />
+        ))}
+      </VStack>
+    </ScrollView>
   );
 };
 export default TransactionHistoryList;

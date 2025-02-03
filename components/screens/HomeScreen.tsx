@@ -40,7 +40,7 @@ const HomeScreen = () => {
             <Heading bold size="2xl" className="mb-4">
               Recent Transactions
             </Heading>
-            <TransactionHistoryList />
+            <TransactionHistoryList limit={5} />
           </View>
         </View>
 

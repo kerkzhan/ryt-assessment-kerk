@@ -1,7 +1,8 @@
 import { makeTransfer } from "@/api";
 import { ERROR_CODES } from "@/constants/error-codes";
-import { InsertTransaction } from "@/types/data";
+import { InsertTransaction, Transaction } from "@/types/data";
 import { ApiError } from "@/types/errors";
+import { P } from "@expo/html-elements";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as LocalAuthentication from "expo-local-authentication";
 
@@ -9,10 +10,20 @@ export const useMakeTransfer = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: InsertTransaction) => {
-      const res = await LocalAuthentication.authenticateAsync();
-      console.log("LOCALAUTH", res);
+      if (!(await LocalAuthentication.isEnrolledAsync())) {
+        throw {
+          code: ERROR_CODES.NO_SECURITY_ENABLED,
+          message: "No device security enabled",
+          shouldOpenSettings: true,
+        } as ApiError;
+      }
 
-      if (!res.success) {
+      const isAuthenticated = await LocalAuthentication.authenticateAsync({
+        promptMessage: "Please authenticate to make a payment.",
+      });
+
+      if (!isAuthenticated.success) {
+        await LocalAuthentication.cancelAuthenticate();
         throw {
           code: ERROR_CODES.UNAUTHORIZED,
           message: "Unauthorized transfer. Please authenticate with fingerprint or FaceId",
@@ -20,6 +31,15 @@ export const useMakeTransfer = () => {
       }
       return makeTransfer(data);
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["history"] }),
+    onSuccess: ({ transactionId, timestamp }, data) => {
+      queryClient.invalidateQueries({ queryKey: ["history"] });
+      queryClient.setQueryData<Transaction>(["verified-transfer", transactionId], () => {
+        return {
+          ...data,
+          id: transactionId,
+          timestamp: timestamp,
+        };
+      });
+    },
   });
 };
