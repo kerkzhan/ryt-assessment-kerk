@@ -5,10 +5,9 @@ import { Balance, Contact, InsertTransaction, Transaction } from "@/types/data";
 import { ApiError } from "@/types/errors";
 import * as Crypto from "expo-crypto";
 
-const FAKE_DELAY = Math.floor(Math.random() * 1000);
-
+// Fake delay from 0 - 1000ms to simulate hitting external APIs
 const delay = async () => {
-  await new Promise((r) => setTimeout(r, FAKE_DELAY));
+  await new Promise((r) => setTimeout(r, Math.floor(Math.random() * 1000)));
 };
 
 const getBalance = async (): Promise<Balance> => {
@@ -45,6 +44,7 @@ const makeTransfer = async (data: InsertTransaction) => {
     amount: data.amount,
     recipient: data.recipient,
     timestamp: new Date().toISOString(),
+    note: data.note,
   };
 
   const newBalance = {

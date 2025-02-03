@@ -2,7 +2,6 @@ import { makeTransfer } from "@/api";
 import { ERROR_CODES } from "@/constants/error-codes";
 import { InsertTransaction, Transaction } from "@/types/data";
 import { ApiError } from "@/types/errors";
-import { P } from "@expo/html-elements";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as LocalAuthentication from "expo-local-authentication";
 
