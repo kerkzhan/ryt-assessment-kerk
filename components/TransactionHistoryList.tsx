@@ -35,7 +35,11 @@ const TransactionHistoryList = ({ limit = 0 }: { limit?: number }) => {
     );
   }
   return (
-    <ScrollView className="px-6" showsHorizontalScrollIndicator>
+    <ScrollView
+      className="px-6 max-h-[50vh] flex-1"
+      showsHorizontalScrollIndicator
+      nestedScrollEnabled
+    >
       <VStack space="md">
         {transactionHistoryData?.map((trx) => (
           <TransactionHistoryCard

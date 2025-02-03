@@ -42,7 +42,7 @@ const HomeScreen = () => {
           </View>
         </VStack>
 
-        <HStack className="justify-evenly bg-ryt-primary p-4" space="lg">
+        <HStack className="justify-evenly bg-ryt-primary p-4 " space="lg">
           <ResetQueryCacheButton />
           <NukeButton />
         </HStack>

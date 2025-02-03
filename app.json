@@ -6,9 +6,10 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "userInterfaceStyle": "light",
     "ios": {
+      "userInterfaceStyle": "light",
       "supportsTablet": true,
       "bundleIdentifier": "com.kerkzhan.rytbank",
       "infoPlist": {
@@ -16,6 +17,7 @@
       }
     },
     "android": {
+      "userInterfaceStyle": "automatic",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"

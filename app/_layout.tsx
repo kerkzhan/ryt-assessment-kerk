@@ -9,7 +9,7 @@ import { SafeAreaView } from "@/components/ui/safe-area-view";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { initializeDb } from "@/db/db";
-import { StatusBar } from "react-native";
+import { ScrollView, StatusBar } from "react-native";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -39,22 +39,28 @@ export default function RootLayout() {
   }, [error]);
 
   useEffect(() => {
-    if (loaded) {
+    if (loaded || error) {
       SplashScreen.hideAsync();
     }
-  }, [loaded]);
+  }, [loaded, error]);
+
+  if (!loaded && !error) {
+    return null;
+  }
 
   return <RootLayoutNav />;
 }
 
 function RootLayoutNav() {
   return (
-    <SafeAreaView className="bg-ryt-secondary flex-1 ">
+    <SafeAreaView className="bg-ryt-primary flex-1 ">
       <StatusBar className="bg-ryt-primary" barStyle={"light-content"} />
       <QueryClientProvider client={queryClient}>
         <GluestackUIProvider mode={"dark"}>
           <SafeAreaView className="bg-ryt-secondary flex-1 overflow-hidden">
-            <Slot />
+            <ScrollView showsVerticalScrollIndicator={false} className="flex-1">
+              <Slot />
+            </ScrollView>
           </SafeAreaView>
         </GluestackUIProvider>
       </QueryClientProvider>

@@ -25,7 +25,6 @@ export const useMakeTransfer = () => {
       });
 
       if (!isAuthenticated.success) {
-        await LocalAuthentication.cancelAuthenticate();
         throw {
           code: ERROR_CODES.UNAUTHORIZED,
           message: "Unauthorized transfer. Please authenticate with fingerprint or FaceId",

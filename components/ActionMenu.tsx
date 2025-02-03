@@ -1,4 +1,3 @@
-import { View, Pressable } from "react-native";
 import { Link } from "expo-router";
 import { Send, ArrowDownLeft, Clock } from "lucide-react-native";
 import { Icon } from "./ui/icon";
@@ -18,7 +17,7 @@ const ActionMenu = () => (
         <Link href="/payout">
           <Center className="gap-2">
             <Icon as={Send} size="3xl" />
-            <Text size="lg" className=" text-white">
+            <Text size="lg" className="text-white">
               Send
             </Text>
           </Center>
