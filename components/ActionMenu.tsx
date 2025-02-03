@@ -6,58 +6,51 @@ import { Card } from "./ui/card";
 import { Box } from "./ui/box";
 import { HStack } from "./ui/hstack";
 import { Text } from "./ui/text";
+import { Center } from "./ui/center";
 
 const ActionMenu = () => (
   <Box>
-    <HStack space="lg" className="w-full  justify-evenly">
+    <HStack space="lg" className="w-full justify-evenly">
       <Card
         variant="elevated"
-        className="bg-ryt-primary rounded-lg flex-1 justify-center items-center border shadow-md border-ryt-primary"
+        className="bg-ryt-primary px-2 rounded-lg flex-1 justify-center items-center border shadow-md border-ryt-primary"
       >
         <Link href="/payout">
-          <Box className="items-center">
-            <View className=" size-16 items-center justify-center">
-              <Icon as={Send} size="3xl" />
-            </View>
-            <Text size="xl" className=" text-white">
+          <Center className="gap-2">
+            <Icon as={Send} size="3xl" />
+            <Text size="lg" className=" text-white">
               Send
             </Text>
-          </Box>
+          </Center>
         </Link>
       </Card>
 
       <Card
         variant="elevated"
         aria-disabled={true}
-        className="bg-ryt-secondary aria-disabled:bg-gray-300 rounded-lg flex-1 border shadow-md border-ryt-primary"
+        className="bg-ryt-secondary px-2 aria-disabled:bg-gray-300 justify-center items-center rounded-lg flex-1 border shadow-md border-ryt-primary"
       >
-        <Link href="/payout" disabled className="disabled:opacity-50 " asChild>
-          <Pressable>
-            <View className="items-center">
-              <View className=" size-16 text-ryt-primary items-center justify-center">
-                <Icon as={ArrowDownLeft} size="3xl" className="text-ryt-primary" />
-              </View>
-              <Text size="xl" className=" text-ryt-primary">
-                Receive
-              </Text>
-            </View>
-          </Pressable>
+        <Link href="/" disabled className="disabled:opacity-50 " asChild>
+          <Center className=" gap-2">
+            <Icon as={ArrowDownLeft} size="3xl" className="text-ryt-primary" />
+            <Text size="lg" className=" text-ryt-primary">
+              Receive
+            </Text>
+          </Center>
         </Link>
       </Card>
 
       <Card
         variant="filled"
-        className="bg-ryt-secondary rounded-lg flex-1 justify-center items-center border shadow-md border-ryt-primary"
+        className="bg-ryt-secondary px-2 rounded-lg flex-1 justify-center items-center border shadow-md border-ryt-primary"
       >
         <Link href="/transactions">
-          <View className="items-center">
-            <View className=" size-16 text-ryt-primary items-center justify-center">
-              <Icon as={Clock} size="3xl" className="text-ryt-primary" />
-            </View>
-            <Text size="xl" className=" text-ryt-primary">
+          <Center className=" gap-2">
+            <Icon as={Clock} size="3xl" className="text-ryt-primary" />
+            <Text size="lg" className=" text-ryt-primary">
               History
             </Text>
-          </View>
+          </Center>
         </Link>
       </Card>
     </HStack>

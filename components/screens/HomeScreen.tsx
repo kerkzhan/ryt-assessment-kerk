@@ -3,7 +3,6 @@ import { Platform, View } from "react-native";
 import { Box } from "../ui/box";
 import BalanceCard from "../BalanceCard";
 import { Text } from "../ui/text";
-import { Heading } from "../ui/heading";
 
 import ActionMenu from "../ActionMenu";
 import TransactionHistoryList from "../TransactionHistoryList";

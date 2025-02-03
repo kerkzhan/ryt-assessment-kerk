@@ -7,7 +7,6 @@ import {
   AlertDialogBackdrop,
 } from "@/components/ui/alert-dialog";
 import { Button, ButtonText } from "@/components/ui/button";
-import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
 import { useQueryClient } from "@tanstack/react-query";
 import React from "react";
@@ -26,8 +25,13 @@ const ResetQueryCacheButton = () => {
   };
 
   return (
-    <View className="flex-1">
-      <Button onPress={() => setShowAlertDialog(true)} action="primary" size="xl" className="h-16">
+    <View className="flex flex-grow">
+      <Button
+        onPress={() => setShowAlertDialog(true)}
+        action="primary"
+        size="xl"
+        className="h-16 min-w-fit"
+      >
         <ButtonText className="font-sans-bold">Reset Cache</ButtonText>
       </Button>
 

@@ -9,7 +9,10 @@ export const useMakeTransfer = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: InsertTransaction) => {
-      if (!(await LocalAuthentication.isEnrolledAsync())) {
+      if (
+        (await LocalAuthentication.getEnrolledLevelAsync()) ===
+        LocalAuthentication.SecurityLevel.NONE
+      ) {
         throw {
           code: ERROR_CODES.NO_SECURITY_ENABLED,
           message: "No device security enabled",

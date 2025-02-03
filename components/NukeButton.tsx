@@ -7,7 +7,6 @@ import {
   AlertDialogBackdrop,
 } from "@/components/ui/alert-dialog";
 import { Button, ButtonText } from "@/components/ui/button";
-import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
 import { resetDb } from "@/db/db";
 import { useQueryClient } from "@tanstack/react-query";
@@ -28,8 +27,13 @@ const NukeButton = () => {
   };
 
   return (
-    <View className="flex-1">
-      <Button onPress={() => setShowAlertDialog(true)} action="negative" size="xl" className="h-16">
+    <View className="flex flex-shrink">
+      <Button
+        onPress={() => setShowAlertDialog(true)}
+        action="negative"
+        size="xl"
+        className="h-16 min-w-fit"
+      >
         <ButtonText>NUKE!</ButtonText>
       </Button>
 
