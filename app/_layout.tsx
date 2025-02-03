@@ -23,7 +23,9 @@ const queryClient = new QueryClient({});
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    Fraunces: require("../assets/fonts/Fraunces-Variable.ttf"),
+    "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins-Bold": require("../assets/fonts/Poppins-Bold.ttf"),
     ...FontAwesome.font,
   });
 

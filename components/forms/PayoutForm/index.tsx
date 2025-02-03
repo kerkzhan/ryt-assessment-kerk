@@ -113,7 +113,7 @@ const PayoutForm = () => {
         render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
           <FormControl isRequired isInvalid={!!error}>
             <FormControlLabel>
-              <FormControlLabelText bold className="text-ryt-primary" size="xl">
+              <FormControlLabelText bold className="text-ryt-primary font-sans-bold" size="xl">
                 Recipient
               </FormControlLabelText>
             </FormControlLabel>
@@ -156,7 +156,7 @@ const PayoutForm = () => {
         render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
           <FormControl isRequired isInvalid={!!error}>
             <FormControlLabel>
-              <FormControlLabelText bold className="text-ryt-primary" size="xl">
+              <FormControlLabelText bold className="text-ryt-primary font-sans-bold" size="xl">
                 Amount
               </FormControlLabelText>
             </FormControlLabel>
@@ -191,7 +191,7 @@ const PayoutForm = () => {
         render={({ field: { onChange, onBlur, value } }) => (
           <FormControl>
             <FormControlLabel>
-              <FormControlLabelText bold className="text-ryt-primary" size="xl">
+              <FormControlLabelText bold className="text-ryt-primary font-sans-bold" size="xl">
                 Note (Optional)
               </FormControlLabelText>
             </FormControlLabel>

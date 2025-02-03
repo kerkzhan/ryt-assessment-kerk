@@ -28,16 +28,16 @@ const ResetQueryCacheButton = () => {
   return (
     <View className="flex-1">
       <Button onPress={() => setShowAlertDialog(true)} action="primary" size="xl" className="h-16">
-        <ButtonText>Reset Cache</ButtonText>
+        <ButtonText className="font-sans-bold">Reset Cache</ButtonText>
       </Button>
 
       <AlertDialog isOpen={showAlertDialog} onClose={handleClose} size="lg">
         <AlertDialogBackdrop />
         <AlertDialogContent>
           <AlertDialogHeader>
-            <Heading className="text-typography-950 font-semibold" size="md">
+            <Text className="text-typography-950 font-sans-bold" size="2xl">
               Resetting query cache.
-            </Heading>
+            </Text>
           </AlertDialogHeader>
           <AlertDialogBody className="mt-3 mb-4">
             <Text size="lg">

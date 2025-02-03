@@ -1,5 +1,4 @@
 import { Card } from "@/components/ui/card";
-import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
 import { HStack } from "./ui/hstack";
 import { VStack } from "./ui/vstack";
@@ -28,17 +27,17 @@ const TransactionHistoryCard = ({ amount, date, recipient, transactionId }: Prop
         <Card size="md" variant="elevated" className="bg-white shadow-lg">
           <HStack className="justify-between">
             <VStack>
-              <Heading size="lg" className="mb-1 text-black">
+              <Text bold size="xl" className="mb-1 text-black">
                 {recipient?.name}
-              </Heading>
+              </Text>
               <Text size="lg" className="text-black">
                 {prettifyIsoString(date)}
               </Text>
             </VStack>
 
-            <Heading size="xl" className="text-ryt-primary">
+            <Text bold size="xl" className="text-ryt-primary">
               MYR {amount}
-            </Heading>
+            </Text>
           </HStack>
         </Card>
       </Pressable>

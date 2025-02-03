@@ -178,6 +178,9 @@ module.exports = {
         body: undefined,
         mono: undefined,
         roboto: ["Roboto", "sans-serif"],
+        fraunces: ["Fraunces"],
+        sans: ["Poppins-Regular", "sans-serif"],
+        "sans-bold": ["Poppins-Bold", "sans-serif"],
       },
       fontWeight: {
         extrablack: "950",

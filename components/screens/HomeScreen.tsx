@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Platform, View } from "react-native";
 import { Box } from "../ui/box";
 import BalanceCard from "../BalanceCard";
-
+import { Text } from "../ui/text";
 import { Heading } from "../ui/heading";
 
 import ActionMenu from "../ActionMenu";
@@ -25,9 +25,9 @@ const HomeScreen = () => {
       <Box className="flex-1">
         <VStack space="md" className="flex-1 ">
           <Box className="bg-ryt-primary rounded-b-3xl p-6 gap-4">
-            <Heading bold size="3xl">
+            <Text size="4xl" role="heading" className={"font-fraunces"}>
               Ryt Bank
-            </Heading>
+            </Text>
             <BalanceCard />
           </Box>
 
@@ -36,9 +36,9 @@ const HomeScreen = () => {
           </View>
 
           <View className="flex-1 gap-4">
-            <Heading bold size="2xl" className=" text-ryt-primary px-6">
+            <Text bold size="3xl" className=" text-ryt-primary px-6">
               Recent Transactions
-            </Heading>
+            </Text>
             <TransactionHistoryList limit={5} />
           </View>
         </VStack>

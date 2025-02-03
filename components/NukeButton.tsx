@@ -37,9 +37,9 @@ const NukeButton = () => {
         <AlertDialogBackdrop />
         <AlertDialogContent>
           <AlertDialogHeader>
-            <Heading className="text-typography-950 font-semibold" size="md">
+            <Text bold size="2xl">
               Are you sure?
-            </Heading>
+            </Text>
           </AlertDialogHeader>
           <AlertDialogBody className="mt-3 mb-4">
             <Text size="lg">This button will restore the app to initial state. </Text>

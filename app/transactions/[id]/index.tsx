@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { Link, router, useLocalSearchParams } from "expo-router";
 import { useGetTransactionById } from "@/hooks/useGetTransactionById";
 import { VStack } from "@/components/ui/vstack";
@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card";
 import TransactionDetails from "@/components/TransactionDetails";
 import { SkeletonText } from "@/components/ui/skeleton";
 import { Button, ButtonText } from "@/components/ui/button";
+import { Text } from "@/components/ui/text";
 
 const TransactionDetailsPage = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -28,7 +29,9 @@ const TransactionDetailsPage = () => {
     <View className="flex-1 bg-ryt-primary px-4">
       <Card className="bg-white rounded-3xl shadow-lg mt-20 overflow-hidden ">
         <VStack className="items-center pt-12 pb-8">
-          <Text className="text-2xl font-semibold text-gray-800">Transaction Details</Text>
+          <Text size="3xl" bold className=" text-ryt-primary">
+            Transaction Details
+          </Text>
         </VStack>
 
         {isLoading || !transaction ? (

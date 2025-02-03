@@ -12,27 +12,35 @@ const TransactionDetails = ({ transaction }: { transaction: Transaction }) => {
     <VStack className="px-6 py-8 bg-gray-100 rounded-lg">
       {/* Transaction ID section */}
       <VStack className="items-center mb-8">
-        <Text className="text-gray-500 font-medium mb-2">Transaction ID</Text>
+        <Text bold className="text-gray-500  mb-2">
+          Transaction ID
+        </Text>
         <Text className="text-gray-800 font-semibold">{transaction.id}</Text>
       </VStack>
 
       <VStack className="bg-white p-4 rounded-xl" space="lg">
         <VStack className="items-center border-b border-gray-100 pb-4">
-          <Text className="text-gray-500 font-medium mb-1">Amount</Text>
+          <Text bold className="text-gray-500  mb-1">
+            Amount
+          </Text>
           <Text className="text-2xl text-gray-800 font-semibold">{transaction.amount}</Text>
         </VStack>
 
         <VStack className="space-y-4">
           <HStack>
             <View className="w-20">
-              <Text className="text-gray-500 font-medium">To</Text>
+              <Text bold className="text-gray-500 ">
+                To
+              </Text>
             </View>
             <Text className="text-gray-800 font-semibold flex-1">{transaction.recipient.name}</Text>
           </HStack>
 
           <HStack>
             <View className="w-20">
-              <Text className="text-gray-500 font-medium">Time</Text>
+              <Text bold className="text-gray-500 ">
+                Time
+              </Text>
             </View>
             <Text className="text-gray-800 font-semibold flex-1">
               {prettifyIsoString(transaction.timestamp)}
@@ -41,7 +49,9 @@ const TransactionDetails = ({ transaction }: { transaction: Transaction }) => {
 
           <HStack className="items-start">
             <View className="w-20">
-              <Text className="text-gray-500 font-medium">Note</Text>
+              <Text bold className="text-gray-500 ">
+                Note
+              </Text>
             </View>
             <Text className="text-gray-800 font-semibold flex-1">{transaction.note || "-"}</Text>
           </HStack>
@@ -49,15 +59,6 @@ const TransactionDetails = ({ transaction }: { transaction: Transaction }) => {
       </VStack>
 
       <VStack space="lg" className="p-4">
-        <Button
-          size="xl"
-          variant="link"
-          action="secondary"
-          className="rounded-lg items-center"
-          onPress={() => router.back()}
-        >
-          <ButtonText className="text-ryt-primary font-semibold text-lg">Back</ButtonText>
-        </Button>
         <Link
           href={{
             pathname: "/payout",
@@ -73,9 +74,22 @@ const TransactionDetails = ({ transaction }: { transaction: Transaction }) => {
             className="bg-ryt-primary rounded-lg items-center"
             onPress={() => router.back()}
           >
-            <Text className="text-white font-semibold text-lg">Transfer again</Text>
+            <ButtonText className="text-white" size="xl">
+              Transfer again
+            </ButtonText>
           </Button>
         </Link>
+        <Button
+          size="xl"
+          variant="link"
+          action="secondary"
+          className="rounded-lg items-center"
+          onPress={() => router.back()}
+        >
+          <ButtonText className="text-ryt-primary" size="xl">
+            Back
+          </ButtonText>
+        </Button>
       </VStack>
     </VStack>
   );

@@ -1,6 +1,6 @@
 import TransactionHistoryList from "@/components/TransactionHistoryList";
 import { Box } from "@/components/ui/box";
-import { Heading } from "@/components/ui/heading";
+import { Text } from "@/components/ui/text";
 import { HStack } from "@/components/ui/hstack";
 import { Icon } from "@/components/ui/icon";
 import { VStack } from "@/components/ui/vstack";
@@ -15,9 +15,9 @@ const TransactionHistoryPage = () => {
           <Link href={"/"}>
             <Icon as={ArrowLeft} size="3xl" className="text-white" />
           </Link>
-          <Heading size="2xl" className="text-white">
+          <Text bold size="3xl" className="text-white">
             Transaction History
-          </Heading>
+          </Text>
         </HStack>
         <TransactionHistoryList limit={0} />
       </VStack>

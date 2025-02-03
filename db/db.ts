@@ -8,6 +8,9 @@ const INITIAL_DATA = {
   contacts: [
     { id: "1", name: "Lebron James" },
     { id: "2", name: "Steph Curry" },
+    { id: "3", name: "Janja Garnbret" },
+    { id: "4", name: "Tomoa Narasaki" },
+    { id: "5", name: "Brooke Raboutou" },
   ],
   transactionHistory: [],
 };
