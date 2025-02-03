@@ -32,13 +32,18 @@ export const useMakeTransfer = () => {
     },
     onSuccess: ({ transactionId, timestamp }, data) => {
       queryClient.invalidateQueries({ queryKey: ["history"] });
-      queryClient.setQueryData<Transaction>(["verified-transfer", transactionId], () => {
-        return {
-          ...data,
-          id: transactionId,
-          timestamp: timestamp,
-        };
-      });
+
+      const transaction = {
+        ...data,
+        id: transactionId,
+        timestamp: timestamp,
+      };
+
+      queryClient.setQueryData<Transaction>(
+        ["verified-transfer", transactionId],
+        () => transaction
+      );
+      queryClient.setQueryData<Transaction>(["transaction", transactionId], transaction);
     },
   });
 };
