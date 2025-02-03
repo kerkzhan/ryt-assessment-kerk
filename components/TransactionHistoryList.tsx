@@ -28,7 +28,11 @@ const TransactionHistoryList = ({ limit = 0 }: { limit?: number }) => {
   }
 
   if (!transactionHistoryData?.length) {
-    return <Text>No transactions to show.</Text>;
+    return (
+      <Text className="px-6 text-black" size="lg">
+        No transactions to show.
+      </Text>
+    );
   }
   return (
     <ScrollView className="px-6" showsHorizontalScrollIndicator>
