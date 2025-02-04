@@ -26,7 +26,7 @@ There are two ways to run the app. Choose the one that fits best:
    ```
 4. Run on your device:
    - Scan QR code with your phone and open in Expo Go app. Make sure you are using Expo Go and not development build. (See image)
-     ![alt text](assets/images/readme-image.png)
+     ![expo go](assets/images/readme-image.png)
      OR
    - Run on emulator (requires Android Studio / Xcode)
 
@@ -85,6 +85,32 @@ This is my first time building a mobile app! Coming from web development, the pr
   - Made sure error messages make sense to users
 
 ---
+
+## 🎥 Demo
+
+### Making Payment:
+
+<video controls style="width: 300px; height: auto;">
+
+  <source src="assets/videos/MakingTransfer.webm" type="video/webm">
+  Your browser does not support the video tag.
+</video>
+
+### Caching and resetting cache:
+
+<video controls style="width: 300px; height: auto;">
+
+  <source src="assets/videos/CacheDemo.webm" type="video/webm">
+  Your browser does not support the video tag.
+</video>
+
+### Resetting database:
+
+<video controls style="width: 300px; height: auto;">
+
+  <source src="assets/videos/ResetDb.webm" type="video/webm">
+  Your browser does not support the video tag.
+</video>
 
 ## 🛠 Technology Stack
 

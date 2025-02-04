@@ -9,7 +9,6 @@ import { ScrollView } from "react-native";
 
 const TransactionHistoryList = ({ limit = 0 }: { limit?: number }) => {
   const { data: transactionHistoryData, isLoading } = useGetTransactionHistory({ limit });
-
   if (isLoading) {
     return (
       <VStack space="md" className="px-6">
@@ -35,11 +34,7 @@ const TransactionHistoryList = ({ limit = 0 }: { limit?: number }) => {
     );
   }
   return (
-    <ScrollView
-      className="px-6 max-h-[50vh] flex-1"
-      showsHorizontalScrollIndicator
-      nestedScrollEnabled
-    >
+    <ScrollView className="px-6" showsHorizontalScrollIndicator nestedScrollEnabled>
       <VStack space="md">
         {transactionHistoryData?.map((trx) => (
           <TransactionHistoryCard
