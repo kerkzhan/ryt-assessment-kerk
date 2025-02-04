@@ -1,7 +1,5 @@
 # Ryt Bank Assessment - Boon Kerk Zhan
 
----
-
 ## 🚀 Quick Start
 
 There are two ways to run the app. Choose the one that fits best:
@@ -38,13 +36,11 @@ There are two ways to run the app. Choose the one that fits best:
 2. Install on your Android device (enable "Unknown Sources" in settings)
 3. (Optional) Drag .apk file to Android emulator and install there.
 
----
 
 ## 📱 Project Overview
 
 This is my first time building a mobile app! Coming from web development, the process was eye-opening and I learned a lot, especially about setting up the development environment. You could say the web has it easy!
 
----
 
 ## 🏗 Key Highlights
 
