@@ -25,6 +25,7 @@ There are two ways to run the app. Choose the one that fits best:
    npm start
    ```
 4. Run on your device:
+   - Install Expo Go app on your device. [AppStore](https://itunes.apple.com/app/apple-store/id982107779) / [PlayStore](https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=www)
    - Scan QR code with your phone and open in Expo Go app. Make sure you are using Expo Go and not development build. (See image)
      ![expo go](assets/images/readme-image.png)
      OR
