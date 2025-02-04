@@ -1,50 +1,166 @@
-# Welcome to your Expo app 👋
+# Ryt Bank Assessment - Boon Kerk Zhan
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+---
 
-## Get started
+## 🚀 Quick Start
 
-1. Install dependencies
+There are two ways to run the app. Choose the one that fits best:
 
+1. Development Server (iOS/Android, )
+   - You can modify the code and see changes happen live. You'll need to clone the repo for this.
+2. APK installation (Android only)
+   - Download the app build and install it on your Android phone/emulator.
+
+### 1. Development Server (iOS/Android)
+
+#### Prerequisites
+
+1. Clone the repository
+2. Install dependencies:
    ```bash
    npm install
    ```
-
-2. Start the app
-
+3. Start the development server:
    ```bash
-    npx expo start
+   npm start
    ```
+4. Run on your device:
+   - Scan QR code with your phone and open in Expo Go app
+     OR
+   - Run on emulator (requires Android Studio / Xcode)
 
-In the output, you'll find options to open the app in a
+### 2. APK Installation (Android only)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+1. Download the .apk file from [releases](link-to-releases)
+2. Install on your Android device (enable "Unknown Sources" in settings)
+3. (Optional) Drag .apk file to Android emulator and install there.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## 📱 Project Overview
 
-When you're ready, run:
+This is my first time building a mobile app! Coming from web development, the process was eye-opening and I learned a lot, especially about setting up the development environment. You could say the web has it easy!
 
-```bash
-npm run reset-project
-```
+---
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🏗 Key Highlights
 
-## Learn more
+### Clear Separation of Concerns
 
-To learn more about developing your project with Expo, look at the following resources:
+- **UI Components vs. Business Logic**
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+  - Kept UI components in the `components` folder
+  - Put business logic in custom hooks like `useGetBalance` and `useMakeTransfer`
 
-## Join the community
+- **Data Layer**
+  - Created mock API with fake delays in the `api` folder
+  - Used AsyncStorage to save data locally
 
-Join our community of developers creating universal apps.
+### App Features
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- **Caching**
+
+  - App saves API requests to prevent unnecessary calls
+  - Cache gets cleared when new data comes in
+  - Added a `Reset Cache` button at the bottom of homepage for testing
+
+- **Type Safety & Form Validation**
+
+  - Used TypeScript throughout for intellisense and improved developer experience
+  - Form validation with Zod schemas
+  - React Hook Form for handling form inputs
+  - Added proper error handling with custom error codes
+  - Created clear data types for things like Transaction and Balance
+
+- **Backend Simulation**
+
+  - Added realistic network delays
+  - Stored data using AsyncStorage
+  - Added a `NUKE` button at the bottom of homepage to reset the database
+
+- **Error Handling**
+  - Set up custom error codes and messages
+  - Added error states in forms
+  - Made sure error messages make sense to users
+
+---
+
+## 🛠 Technology Stack
+
+### Framework
+
+- **Expo**
+  - Really easy to get started with as a web developer with good docs
+  - File-based routing like Next.js
+  - Easy to setup development environment with both Expo Go and dev builds
+  - Comes with biometrics built-in
+
+### UI Layer
+
+- **Gluestack with NativeWind**
+
+  - Uses Tailwind CSS style for React Native
+  - Since I know web dev, this let me build UI quickly
+
+- **AI Help**
+  - Used Claude to get started with UI and basic code
+  - My workflow: Ask for basic UI → Get preview → Convert to mobile → Style it up
+
+### Data Management
+
+- **React Query**
+  - Handles caching of API requests
+  - Ensure server state is synced with application
+  - Prevents unnecessary rerenders
+
+### Type Safety & Forms
+
+- **TypeScript + Zod + React Hook Form**
+  - 3 best friends of libraries that are battle-tested and used in production apps
+
+### Storage
+
+- **AsyncStorage**
+  - Saves data on the device to mimic
+  - Does the job for this app demo
+
+---
+
+## 📝 What I Learned & What's Next
+
+### 🧪 Testing
+
+- **Current Gap:** No tests yet
+- **Plan:**
+  - Add tests for custom hooks
+  - Set up integration tests for main features
+  - Maybe add Storybook for component testing
+
+### 📐 Code Structure
+
+- **Current Gap:** Basic folder structure that needs work. Still figuring out best practices.
+- **Plan:**
+  - Look into how big React Native apps are structured
+  - Organize features better by folder
+  - Make the code more scalable
+  - Set up proper deployment pipeline
+
+### 🎨 UI Framework Thoughts
+
+- **Learning:** Gluestack isn't as good as I hoped
+  - Styles don't work right with child components even when set up correctly
+  - Props are inconsistent (some use `sm`/`md`, others use `small`/`medium`)
+- **Future Plan:**
+  - Might switch to just NativeWind
+  - Check out Unistyles
+  - For a real app, probably better to build our own design system
+
+### ⚡ Performance Tracking
+
+- **Current Gap:** Not tracking performance much
+- **Plan:**
+  - Add performance monitoring
+  - Track async operations
+  - Watch how React Query cache works
+  - Set up error tracking
+  - Look into tools like Sentry or Datadog
