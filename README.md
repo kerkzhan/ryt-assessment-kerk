@@ -32,7 +32,7 @@ There are two ways to run the app. Choose the one that fits best:
 
 ### 2. APK Installation (Android only)
 
-1. Download the .apk file from [releases](link-to-releases)
+1. Download the .apk file from [here](https://github.com/kerkzhan/ryt-assessment-kerk/releases/download/v0.1.2/ryt-assessment.apk)
 2. Install on your Android device (enable "Unknown Sources" in settings)
 3. (Optional) Drag .apk file to Android emulator and install there.
 
