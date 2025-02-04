@@ -25,7 +25,8 @@ There are two ways to run the app. Choose the one that fits best:
    npm start
    ```
 4. Run on your device:
-   - Scan QR code with your phone and open in Expo Go app
+   - Scan QR code with your phone and open in Expo Go app. Make sure you are using Expo Go and not development build. (See image)
+     ![alt text](assets/images/readme-image.png)
      OR
    - Run on emulator (requires Android Studio / Xcode)
 
