@@ -30,6 +30,7 @@ There are two ways to run the app. Choose the one that fits best:
      ![expo go](assets/images/readme-image.png)
      OR
    - Run on emulator (requires Android Studio / Xcode)
+   - Note: FaceId does not work in Expo Go, but will fallback to passcode. To test biometrics, you can use Android.
 
 ### 2. APK Installation (Android only)
 
