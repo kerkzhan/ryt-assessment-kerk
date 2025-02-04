@@ -90,21 +90,21 @@ This is my first time building a mobile app! Coming from web development, the pr
 
 ### Making Payment:
 
-<video controls style="width: 300px; height: auto;">
 
-  <source src="assets/videos/MakingTransfer.webm" type="video/webm">
-  Your browser does not support the video tag.
-</video>
+https://github.com/user-attachments/assets/fd49234d-4a74-4705-b64a-a2620bbbe748
+
+
 
 ### Caching and resetting cache:
 
-<video controls style="width: 300px; height: auto;">
 
-  <source src="assets/videos/CacheDemo.webm" type="video/webm">
-  Your browser does not support the video tag.
-</video>
+
+https://github.com/user-attachments/assets/8411ed85-e129-406d-8667-88e720afe1c1
+
 
 ### Resetting database:
+[ResetDb.webm](https://github.com/user-attachments/assets/491477cd-e813-4808-bf6d-7c26f226e50a)
+
 
 <video controls style="width: 300px; height: auto;">
 
