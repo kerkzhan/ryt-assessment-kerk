@@ -6,7 +6,7 @@
 
 There are two ways to run the app. Choose the one that fits best:
 
-1. Development Server (iOS/Android, )
+1. Development Server (iOS/Android)
    - You can modify the code and see changes happen live. You'll need to clone the repo for this.
 2. APK installation (Android only)
    - Download the app build and install it on your Android phone/emulator.
