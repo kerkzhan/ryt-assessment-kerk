@@ -58,7 +58,11 @@ function RootLayoutNav() {
       <QueryClientProvider client={queryClient}>
         <GluestackUIProvider mode={"dark"}>
           <SafeAreaView className="bg-ryt-secondary flex-1 overflow-hidden">
-            <ScrollView showsVerticalScrollIndicator={false} className="flex-1">
+            <ScrollView
+              contentContainerClassName="flex-1"
+              showsVerticalScrollIndicator={false}
+              className="flex-1"
+            >
               <Slot />
             </ScrollView>
           </SafeAreaView>

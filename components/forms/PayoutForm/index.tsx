@@ -39,9 +39,10 @@ import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createPayoutFormSchema } from "./schema";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const PayoutForm = () => {
-  const { data: contactsData } = useGetContacts();
+  const { data: contactsData, isLoading: isContactsLoading } = useGetContacts();
   const { data: balanceData } = useGetBalance();
   const { mutate: makeTransfer, isPending } = useMakeTransfer();
   const { show } = useToast();
@@ -118,32 +119,40 @@ const PayoutForm = () => {
                   Recipient
                 </FormControlLabelText>
               </FormControlLabel>
-              <Select selectedValue={value} onValueChange={onChange} initialLabel={initialLabel}>
-                <SelectTrigger variant="outline" size="lg" className="bg-white rounded-lg border-0">
-                  <SelectInput
-                    placeholder="Select a recipient"
-                    className="text-black"
-                    onBlur={onBlur}
-                  />
-                  <SelectIcon className="mr-3" as={ChevronDownIcon} />
-                </SelectTrigger>
-                <SelectPortal>
-                  <SelectBackdrop />
-                  <SelectContent>
-                    <SelectDragIndicatorWrapper>
-                      <SelectDragIndicator />
-                    </SelectDragIndicatorWrapper>
-                    {contactsData?.map((contact) => (
-                      <SelectItem
-                        label={contact.name}
-                        key={`${contact.name}-${contact.id}`}
-                        value={contact.id}
-                        className="h-16"
-                      />
-                    ))}
-                  </SelectContent>
-                </SelectPortal>
-              </Select>
+              {isContactsLoading ? (
+                <Skeleton speed={4} startColor="bg-gray-100" className="h-8" />
+              ) : (
+                <Select selectedValue={value} onValueChange={onChange} initialLabel={initialLabel}>
+                  <SelectTrigger
+                    variant="outline"
+                    size="lg"
+                    className="bg-white rounded-lg border-0"
+                  >
+                    <SelectInput
+                      placeholder="Select a recipient"
+                      className="text-black"
+                      onBlur={onBlur}
+                    />
+                    <SelectIcon className="mr-3" as={ChevronDownIcon} />
+                  </SelectTrigger>
+                  <SelectPortal>
+                    <SelectBackdrop />
+                    <SelectContent>
+                      <SelectDragIndicatorWrapper>
+                        <SelectDragIndicator />
+                      </SelectDragIndicatorWrapper>
+                      {contactsData?.map((contact) => (
+                        <SelectItem
+                          label={contact.name}
+                          key={`${contact.name}-${contact.id}`}
+                          value={contact.id}
+                          className="h-16"
+                        />
+                      ))}
+                    </SelectContent>
+                  </SelectPortal>
+                </Select>
+              )}
               <FormControlError>
                 <FormControlErrorText>{error?.message}</FormControlErrorText>
               </FormControlError>
